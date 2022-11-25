@@ -13,9 +13,17 @@ class QuestionAdmin(admin.ModelAdmin):
     list_display = ('id', 'role', 'text', 'reference',)
 
 
+class QuestionInline(admin.TabularInline):
+    model = Assessment.questions.through
+    extra = 1
+    fields = ('id',)
+
+
 @admin.register(Assessment)
 class AssessmentAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'question_count',)
+    # inlines = [QuestionInline]
+    filter_horizontal = ('questions',)
 
     def get_queryset(self, request):
         return super().get_queryset(request).prefetch_related('questions')
@@ -26,7 +34,7 @@ class AssessmentAdmin(admin.ModelAdmin):
 
 @admin.register(EmployeeAssessment)
 class EmployeeAssessmentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'uid', 'profile', 'assessment', 'completed_dt',)
+    list_display = ('id', 'profile', 'assessment', 'completed_dt',)
 
 
 @admin.register(Answer)

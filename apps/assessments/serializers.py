@@ -29,7 +29,7 @@ class EmployeeAssessmentSerializer(BaseModelSerializer):
 
     class Meta:
         model = EmployeeAssessment
-        fields = ('id', 'uid', 'profile', 'assessment', 'completed_dt',)
+        fields = ('id', 'profile', 'assessment', 'completed_dt',)
 
 
 class AnswerSerializer(BaseModelSerializer):

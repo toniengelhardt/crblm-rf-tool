@@ -56,4 +56,5 @@ class EmailVerifiedListFilter(admin.SimpleListFilter):
 
 @admin.register(Profile)
 class ProfileAdmin(ImportExportMixin, admin.ModelAdmin):
-    list_display = ('user',)
+    list_display = ('id', 'user', 'name')
+    list_editable = ('name',)

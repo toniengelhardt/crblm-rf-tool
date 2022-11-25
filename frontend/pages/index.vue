@@ -17,8 +17,8 @@
         </div>
       </div>
     </div>
-    <div class="flex justify-center bg-primary/20">
-      <div class="w-full max-w-screen-md py-12">
+    <div class="flex justify-center bg-primary/20 p-4">
+      <div class="w-full max-w-screen-md md:py-8">
         <EmployeeAssessmentList :items="employeeAssessments" />
       </div>
     </div>
