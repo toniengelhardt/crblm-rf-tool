@@ -1,0 +1,19 @@
+Django==4.1.3  # ♥
+django-allauth==0.51.0  # Convenient authentication utils.
+django-cors-headers==3.13.0  # CORS headers for multi-port apps.
+django-debug-toolbar==3.7.0  # Django debug toolbar.
+django-extensions==3.2.1  # A lot of amazing Django utils.
+django-filter==22.1  # Filters required for REST filter backends.
+django-import-export==3.0.1  # Easy import/export for data via admin.
+django-inline-actions==2.4.0  # Inline actions for the admin.
+django-inlinecss==0.3.0  # Inline css for email templates.
+djangorestframework==3.14.0  # REST for Django.
+djangorestframework-simplejwt==5.2.2  # JWT authentication for REST framework.
+dj-rest-auth==2.2.5
+gunicorn==20.1.0  # Python WSGI HTTP Server for UNIX.
+jsonschema==4.17.1  # Somehow required for migrations.
+oauthlib==3.1.1  # Dependency of some auth package, not sure which one.
+pillow==9.3.0  # Python imaging library.
+psycopg2-binary==2.9.5  # Postgres adapter.
+PyJWT==2.6.0  # Dependency of REST JWT.
+pytz==2022.6  # Timezones.
