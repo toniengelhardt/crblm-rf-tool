@@ -39,6 +39,16 @@ class EmployeeAssessment(models.Model):
     assessment = models.ForeignKey(Assessment, related_name='employee_assessments', on_delete=models.CASCADE)
     completed_dt = models.DateTimeField(null=True, blank=True)
 
+    def save(self, *args, **kwargs):
+        created = self.id is None
+        super().save(*args, **kwargs)
+        if created:
+            # Create an answer object for every question in the assignment and link it.
+            answers = []
+            for question in self.assessment.questions.all():
+                answers.append(Answer(employee_assessment=self, question=question))
+            Answer.objects.bulk_create(answers)
+
 
 class Answer(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4)

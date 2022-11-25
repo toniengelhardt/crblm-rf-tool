@@ -2,7 +2,7 @@
   <NuxtLink
     :to="`/ea/${item.id}`"
     target="_blank"
-    class="flex items-center px-4 py-3 bg-base-100 rounded-lg border-0 border-primary/50 shadow hover:shadow-lg cursor-pointer"
+    class="flex items-center px-4 py-3 bg-base-100 rounded-lg hover:bg-base-300 cursor-pointer"
   >
     <div class="flex-1">
       <div class="text-sm font-bold text-base-content/50">{{ item.profile.name }}</div>

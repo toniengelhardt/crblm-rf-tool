@@ -17,6 +17,7 @@
           <textarea
             class="textarea textarea-bordered w-full mt-4 px-3 text-lg rounded-md"
             placeholder="Your answer..."
+            @change="saveAnswer($event)"
           />
         </div>
       </div>
@@ -25,9 +26,20 @@
 </template>
 
 <script setup lang="ts">
+import { Ref } from 'vue';
+
 defineProps<{
   employeeAssessment: EmployeeAssessment,
 }>()
+
+async function saveAnswer(event: any) {
+  answer = await useApi(`/assessments/answers/${employeeAssessment.value.id}/`, {
+    method: 'PATCH',
+    body: JSON.stringify({
+      text: event.target.value,
+    })
+  }) as Ref<Answer>
+}
 </script>
 
 <style lang="pcss" scoped>

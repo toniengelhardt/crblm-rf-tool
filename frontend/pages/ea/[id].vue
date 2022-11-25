@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <div class="flex justify-center p-4 md:py-12 from-primary to-accent bg-gradient-to-br">
+    <div class="flex justify-center p-4 md:py-12 bg-base-content">
       <div class="w-full max-w-screen-md">
         <EmployeeAssessmentQuestionaire :employeeAssessment="employeeAssessment" />
         <p class="mt-4 md:mt-8 text-center text-xl font-bold text-base-100">Great, all done!</p>
