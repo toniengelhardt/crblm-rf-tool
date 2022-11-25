@@ -17,8 +17,9 @@
         </div>
       </div>
     </div>
-    <div class="flex justify-center p-4 from-primary to-accent bg-gradient-to-br">
-      <div class="w-full max-w-screen-md md:py-8">
+    <div class="flex justify-center p-4 md:py-12 from-primary to-accent bg-gradient-to-br">
+      <div class="w-full max-w-screen-md">
+        <!-- <h2 class="text-3xl text-center text-base-100 font-black mb-4 md:mb-6">Assessments</h2> -->
         <EmployeeAssessmentList :items="employeeAssessments" />
       </div>
     </div>

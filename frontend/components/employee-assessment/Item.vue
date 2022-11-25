@@ -11,7 +11,7 @@
     </div>
     <div
       v-if="item.completed_dt"
-      class="flex justify-center items-center w-8 h-8 mr-4 text-2xl text-accent bg-accent/10 border-2 border-accent rounded-md"
+      class="flex justify-center items-center w-8 h-8 mr-4 text-2xl border-2 border-base-content rounded-md"
     >
       <Icon name="ph:check-bold" />
     </div>
