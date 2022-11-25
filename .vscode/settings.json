@@ -1,0 +1,34 @@
+{
+    "python.defaultInterpreterPath": "env/bin/python",
+    "python.analysis.diagnosticMode": "workspace",
+    "python.analysis.typeCheckingMode": "off",
+    "python.linting.pylintEnabled": true,
+    "python.linting.mypyEnabled": false,
+    "python.linting.ignorePatterns": [
+        ".vscode/*.py",
+        "/env/*",
+        "/frontend/*"
+    ],
+    "python.linting.pylintArgs": [
+        "--django-settings-module=core.settings",
+    ],
+
+    "files.associations": {
+        "**/templates/*.html": "django-html",
+        "**/templates/*": "django-txt",
+        "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+    },
+
+    "emmet.includeLanguages": {
+        "django-html": "html"
+    },
+
+    "python.testing.pytestArgs": [
+        "core",
+        "apps"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+
+    "typescript.preferences.quoteStyle": "single",
+}
