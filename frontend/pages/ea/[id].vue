@@ -7,7 +7,8 @@
             Assessment
           </h1>
           <p class="text-2xl font-bold mb-8 text-base-content/50">
-            {{ employeeAssessment?.profile.name || '...' }} <span class="text-base-content/20">/</span> {{ employeeAssessment?.assessment.role.name || '...' }}
+            {{ employeeAssessment?.profile.name || '...' }} <span class="text-primary/50">/</span>
+            {{ employeeAssessment?.assessment.role.name || '...' }}
           </p>
           <p class="mt-2">
             Please answer the following questions and click submit when done.
@@ -26,7 +27,14 @@
     </div>
     <div class="flex justify-center p-4 md:py-12">
       <div>
-        <button class="btn btn-primary">Submit assessment</button>
+        <button
+          v-if="!employeeAssessment.completed_dt"
+          class="btn btn-primary"
+          @click="submitAssessment()"
+        >Submit assessment</button>
+        <p v-else>
+          Assessment was submitted, but you can still edit it.
+        </p>
       </div>
     </div>
   </NuxtLayout>
@@ -37,5 +45,14 @@ import { Ref } from 'vue'
 
 const route = useRoute()
 
-const employeeAssessment = await useApi(`/assessments/employee-assessments/${route.params.id.toString()}`) as Ref<EmployeeAssessment>
+let employeeAssessment = await useApi(`/assessments/employee-assessments/${route.params.id.toString()}`) as Ref<EmployeeAssessment>
+
+async function submitAssessment() {
+  employeeAssessment = await useApi(`/assessments/employee-assessments/${employeeAssessment.value.id}/`, {
+    method: 'PATCH',
+    body: JSON.stringify({
+      completed_dt: new Date().toISOString(),
+    })
+  }) as Ref<EmployeeAssessment>
+}
 </script>
