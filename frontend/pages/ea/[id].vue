@@ -1,13 +1,13 @@
 <template>
   <NuxtLayout name="page">
-    <div class="navbar bg-base-200">
+    <!-- <div class="navbar bg-base-200">
       <a
         class="btn btn-ghost normal-case text-xl"
         @click="router.back()"
       >
         <Icon name="ph:arrow-left-bold" class="mr-2" />Back
       </a>
-    </div>
+    </div> -->
     <div class="hero">
       <div class="py-12 text-center hero-content">
         <div class="max-w-screen-md">
@@ -15,26 +15,25 @@
             Assessent
           </h1>
           <p>
-            of {{ }} for role {{ }}
+            <strong>{{ employeeAssessment?.profile.name || '...' }}</strong> for <strong>{{ employeeAssessment?.assessment.role.name || '...' }}</strong> role.
           </p>
-          <p>
+          <p class="mt-2">
             Please answer the following questions and click submit when done.
           </p>
         </div>
       </div>
     </div>
     <div class="flex justify-center bg-primary/20">
-      <div class="w-full max-w-screen-md py-12">
-
-      </div>
+      Hello
     </div>
   </NuxtLayout>
 </template>
 
 <script setup lang="ts">
+import { Ref } from 'vue'
+
 const route = useRoute()
 const router = useRouter()
 
-const uid = $computed(() => route.params.uid?.toString())
-const employeeAssessment = useApi(`/assessments/employee-assessment/${uid}`)
+const employeeAssessment = await useApi(`/assessments/employee-assessments/${route.params.id.toString()}`) as Ref<EmployeeAssessment>
 </script>

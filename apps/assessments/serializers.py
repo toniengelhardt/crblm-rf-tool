@@ -16,11 +16,12 @@ class QuestionSerializer(BaseModelSerializer):
 
 
 class AssessmentSerializer(BaseModelSerializer):
+    role = RoleSerializer()
     questions = QuestionSerializer(many=True)
 
     class Meta:
         model = Assessment
-        fields = ('id', 'name', 'questions',)
+        fields = ('id', 'role', 'name', 'questions',)
 
 
 class EmployeeAssessmentSerializer(BaseModelSerializer):

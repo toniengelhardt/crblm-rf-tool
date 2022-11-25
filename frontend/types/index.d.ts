@@ -1,29 +1,29 @@
 declare interface user {
-  id: number,
+  id: string,
   name: string,
 }
 
 declare interface Role {
-  id: number,
+  id: string,
   name: string,
 }
 
 declare interface Question {
-  id: number,
+  id: string,
   text: string,
   reference: string,
 }
 
 declare interface Assessment {
-  id: number,
+  id: string,
   name: string,
+  role: Role,
   questions: Question[],
 }
 
 declare interface EmployeeAssessment {
-  id: number,
-  uid: string,
-  profile: number,
+  id: string,
+  profile: Profile,
   assessment: Assessment,
   completed_dt: string,
 }
