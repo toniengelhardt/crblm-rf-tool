@@ -1,2 +1,2 @@
-# django-nuxt-starter
-Starter template for project with Django (backend), Nuxt (frontend), WindiCSS, and Daisy UI.
+# Cerebellum RF Tool
+MVP based on Django (backend), Nuxt (frontend), Tailwind, and Daisy UI.
