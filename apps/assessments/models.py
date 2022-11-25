@@ -22,6 +22,7 @@ class Question(models.Model):
 
 
 class Assessment(models.Model):
+    role = models.ForeignKey(Role, related_name='assessments', null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=80)
     questions = models.ManyToManyField(Question, blank=True)
 
@@ -33,6 +34,7 @@ class EmployeeAssessment(models.Model):
     uid = models.UUIDField(default=uuid4)
     profile = models.ForeignKey(Profile, related_name='employee_assessments', on_delete=models.CASCADE)
     assessment = models.ForeignKey(Assessment, related_name='employee_assessments', on_delete=models.CASCADE)
+    completed_dt = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return str(self.uid)
@@ -40,4 +42,5 @@ class EmployeeAssessment(models.Model):
 
 class Answer(models.Model):
     employee_assessment = models.ForeignKey(EmployeeAssessment, related_name='answers', on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, related_name='answers', null=True, on_delete=models.CASCADE)
     text = models.TextField()

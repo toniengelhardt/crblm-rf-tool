@@ -1,15 +1,23 @@
 import type { Config } from 'tailwindcss'
+import tailwindNesting from '@tailwindcss/nesting'
+import tailwindTypography from '@tailwindcss/typography'
 
 export default <Partial<Config>>{
   theme: {
     // extend: {
-    //   text: {
-    //     dim: `${defaultTheme.colors.green} dark:${defaultTheme}`,
+    //   colors: {
+    //     primary: defaultTheme.colors.green
     //   }
     // }
   },
   plugins: [
-    require('@tailwindcss/typography'),
-    require('daisyui')
+    tailwindNesting,
+    tailwindTypography,
+    require('daisyui'),
   ],
+  daisyui: {
+    themes: [
+      'cupcake',
+    ],
+  }
 }

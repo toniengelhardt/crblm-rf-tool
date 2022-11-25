@@ -1,9 +1,16 @@
 export default defineNuxtConfig({
+  telemetry: false,
   runtimeConfig: {
-    public: {}
+    public: {
+      apiUrl: process.env.API_URL,
+    }
   },
   app: {
     head: {
+      htmlAttrs: {
+        lang: 'en',
+        translate: 'no', // Avoid translation.
+      },
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1.0',
     },
@@ -19,9 +26,9 @@ export default defineNuxtConfig({
       reactivityTransform: true,
     },
   },
-  tailwindcss: {
-    cssPath: '~/assets/css/tailwind.css',
-  },
+  // tailwindcss: {
+  //   cssPath: '~/assets/css/tailwind.css',
+  // },
   colorMode: {
     classSuffix: '',
     dataValue: 'theme',

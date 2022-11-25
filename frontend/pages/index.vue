@@ -1,18 +1,39 @@
 <template>
   <NuxtLayout name="page">
-    <div class="hero min-h-screen bg-base-200">
-      <div class="text-center hero-content">
+    <div class="hero">
+      <div class="py-12 text-center hero-content">
         <div class="max-w-md">
-          <p class="text-lg">Cerebellum</p>
-          <h1 class="mt-3 mb-5 text-5xl font-bold">
-            RF Tool
+          <p class="text-xl font-black text-base-content/50">crblm</p>
+          <h1 class="mt-4 mb-8 text-6xl font-black">
+            RF <span class="text-primary/50">/</span> Tool
           </h1>
-          <p class="mb-5">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
+          <p class="italic">
+            You can define questions and assessments in the
+            <NuxtLink to="/admin" class="link font-bold">backend</NuxtLink>.
           </p>
-          <button class="btn btn-primary">Get Started</button>
+          <p class="mt-2 italic">
+            Click on an assessment to start it <Icon name="ph:arrow-down-bold" class="text-primary" />
+          </p>
         </div>
+      </div>
+    </div>
+    <div class="flex justify-center bg-primary/20">
+      <div class="w-full max-w-screen-md py-12">
+        <EmployeeAssessmentList :items="employeeAssessments" />
       </div>
     </div>
   </NuxtLayout>
 </template>
+
+<script setup lang="ts">
+import { Ref } from 'vue'
+
+const roles = await useApi('/assessents/roles') as Ref<Role[]>
+const employeeAssessments = await useApi('/assessments/employee-assessments') as Ref<EmployeeAssessment[]>
+
+// const items = $computed(() => {
+//   const dict: { [roleId: number]: { role: Role, assessments: Assessment[] } } = {}
+//   roles.value.forEach(role => dict[role.id] = { role, assessments: [] })
+//   assessments.value.forEach(assessment => dict[assessment.role])
+// })
+</script>

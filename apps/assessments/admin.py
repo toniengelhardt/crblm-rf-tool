@@ -26,7 +26,7 @@ class AssessmentAdmin(admin.ModelAdmin):
 
 @admin.register(EmployeeAssessment)
 class EmployeeAssessmentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'uid', 'profile', 'assessment',)
+    list_display = ('id', 'uid', 'profile', 'assessment', 'completed_dt',)
 
 
 @admin.register(Answer)

@@ -15,11 +15,12 @@ logger = logging.getLogger(__name__)
 
 class Profile(BaseModel):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='profile', on_delete=models.CASCADE)
+    name = models.CharField(max_length=80, null=True, blank=True)
 
     # Standard methods
 
     def __str__(self) -> str:
-        return self.username
+        return self.name or self.username
 
     # Own methods
 
