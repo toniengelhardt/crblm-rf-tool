@@ -2,7 +2,7 @@
   <NuxtLayout name="page">
     <div class="hero">
       <div class="py-8 md:py-12 text-center hero-content">
-        <div class="max-w-screen-md text-sm md:text-md">
+        <div class="max-w-screen-md">
           <h1 class="mb-2 text-4xl md:text-5xl font-black">
             Assessment
           </h1>

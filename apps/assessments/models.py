@@ -44,7 +44,9 @@ class EmployeeAssessment(models.Model):
 
     def save(self, *args, **kwargs):
         created = self.id is None
+
         super().save(*args, **kwargs)
+
         if created:
             # Create an answer object for every question in the assignment and link it.
             answers = []

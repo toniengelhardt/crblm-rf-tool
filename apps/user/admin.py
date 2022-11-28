@@ -1,10 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.models import Group, User  # pylint: disable=imported-auth-user
+from django.contrib.auth.models import Group, User
 from django.db.models import QuerySet
 from django.http import HttpRequest
-
-from import_export.admin import ImportExportMixin
 
 from .models import Profile
 
@@ -14,7 +12,7 @@ admin.site.unregister(Group)
 
 
 @admin.register(User)
-class CustomUserAdmin(ImportExportMixin, UserAdmin):
+class CustomUserAdmin(UserAdmin):
     list_display = (
         'id', 'date_joined', 'username', 'email', 'is_active', 'is_staff', 'is_superuser',
         'provider_list', 'first_name', 'last_name',
@@ -36,25 +34,7 @@ class CustomUserAdmin(ImportExportMixin, UserAdmin):
         return ", ".join([sa.provider for sa in obj.socialaccount_set.all()])
 
 
-class EmailVerifiedListFilter(admin.SimpleListFilter):
-    title = 'email verified'
-    parameter_name = 'email_verified_on'
-
-    def lookups(self, request, model_admin):
-        return (
-            ('yes', 'Yes'),
-            ('no', 'No'),
-        )
-
-    def queryset(self, request, queryset):
-        if self.value() == 'yes':
-            return queryset.filter(email_verified_on__isnull=False)
-        if self.value() == 'no':
-            return queryset.filter(email_verified_on__isnull=True)
-        return queryset
-
-
 @admin.register(Profile)
-class ProfileAdmin(ImportExportMixin, admin.ModelAdmin):
+class ProfileAdmin(admin.ModelAdmin):
     list_display = ('id', 'user', 'name')
     list_editable = ('name',)

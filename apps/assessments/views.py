@@ -2,7 +2,10 @@ from rest_framework.permissions import AllowAny
 
 from core.views import BaseModelViewSet
 from .models import Answer, Assessment, EmployeeAssessment, Question, Role
-from .serializers import AnswerSerializer, AssessmentSerializer, EmployeeAssessmentSerializer, QuestionSerializer, RoleSerializer
+from .serializers import (
+    AnswerSerializer, AssessmentSerializer, EmployeeAssessmentSerializer,
+    QuestionSerializer, RoleSerializer,
+)
 
 
 class RolesViewSet(BaseModelViewSet):

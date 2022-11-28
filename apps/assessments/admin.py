@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django import forms
 
 from .models import Answer, Assessment, EmployeeAssessment, Question, Role
 
@@ -31,16 +30,10 @@ class AnswerInline(admin.TabularInline):
     extra = 1
     fields = ('question', 'text',)
 
-    # def question_text(self, obj):
-    #     return obj.question.text
-
-    # question_text.short_description = 'Question'
-
 
 @admin.register(EmployeeAssessment)
 class EmployeeAssessmentAdmin(admin.ModelAdmin):
     list_display = ('id', 'profile', 'assessment', 'completed_dt',)
-
     inlines = [AnswerInline]
 
 

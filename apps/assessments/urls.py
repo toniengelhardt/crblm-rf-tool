@@ -1,6 +1,9 @@
 from rest_framework.routers import DefaultRouter
 
-from .views import AnswersViewSet, AssessmentsViewSet, EmployeeAssessmentsViewSet, QuestionsViewSet, RolesViewSet
+from .views import (
+    AnswersViewSet, AssessmentsViewSet, EmployeeAssessmentsViewSet,
+    QuestionsViewSet, RolesViewSet,
+)
 
 
 app_name = 'assessments'
