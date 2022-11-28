@@ -1,4 +1,7 @@
 # Cerebellum RF Tool
+
+[ monorepo ]
+
 MVP based on Django (backend), Nuxt (frontend), Tailwind, and Daisy UI.
 
 ### What can it do?
