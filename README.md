@@ -2,7 +2,7 @@
 
 [ monorepo ]
 
-MVP based on Django + Postgres DB (backend), Vue/Nuxt, Tailwind, and Daisy UI (frontend).
+MVP based on Django + Postgres DB (backend), Vue/Nuxt, Vite, Tailwind, and Daisy UI (frontend).
 
 ### What can it do?
 
