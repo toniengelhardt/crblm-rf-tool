@@ -16,8 +16,8 @@
             :value="answer.text || ''"
             class="textarea textarea-bordered w-full px-3 text-lg bg-base-200 border border-base-300 rounded-md"
             placeholder="Your answer..."
-            @keydown.enter.prevent
-            @keyup.enter="($event.target as HTMLInputElement)?.blur()"
+            @keydown.enter.exact.prevent
+            @keyup.enter.exact="($event.target as HTMLInputElement)?.blur()"
             @change="updateAnswer(answer, $event)"
           />
         </div>
@@ -32,6 +32,6 @@ defineProps<{
 }>()
 
 async function updateAnswer(answer: Answer, event: any) {
-  await useUpdateAnswer(ref(answer), { text: event.target.value })
+  await useUpdateAnswer(ref(answer), { text: event.target.value || '' })
 }
 </script>

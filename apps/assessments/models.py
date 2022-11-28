@@ -59,4 +59,4 @@ class Answer(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4)
     employee_assessment = models.ForeignKey(EmployeeAssessment, related_name='answers', on_delete=models.CASCADE)
     question = models.ForeignKey(Question, related_name='answers', null=True, on_delete=models.CASCADE)
-    text = models.TextField()
+    text = models.TextField(blank=True)
