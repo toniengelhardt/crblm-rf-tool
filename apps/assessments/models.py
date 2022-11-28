@@ -20,7 +20,7 @@ class Question(models.Model):
     reference = models.TextField()
 
     def __str__(self):
-        return self.text[:37] + '...' if len(self.text) > 40 else self.text
+        return f'[{self.role.name}] ' + (self.text[:37] + '...' if len(self.text) > 40 else self.text)
 
 
 class Assessment(models.Model):
@@ -38,6 +38,9 @@ class EmployeeAssessment(models.Model):
     profile = models.ForeignKey(Profile, related_name='employee_assessments', on_delete=models.CASCADE)
     assessment = models.ForeignKey(Assessment, related_name='employee_assessments', on_delete=models.CASCADE)
     completed_dt = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.profile} for {self.assessment}'
 
     def save(self, *args, **kwargs):
         created = self.id is None

@@ -34,7 +34,7 @@ class EmployeeAssessmentsViewSet(BaseModelViewSet):
     permission_classes = (AllowAny,)
 
     def get_queryset(self):
-        return EmployeeAssessment.objects.all()
+        return EmployeeAssessment.objects.prefetch_related('answers',)
 
 
 class AnswersViewSet(BaseModelViewSet):

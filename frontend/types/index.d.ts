@@ -25,5 +25,13 @@ declare interface EmployeeAssessment {
   id: string,
   profile: Profile,
   assessment: Assessment,
-  completed_dt: string,
+  answers: Answer[],
+  completed_dt: string | null,
+}
+
+declare interface Answer {
+  id: string,
+  employee_assessment: string,
+  question: Question,
+  text: string | null,
 }

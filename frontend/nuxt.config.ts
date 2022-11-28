@@ -2,6 +2,7 @@ export default defineNuxtConfig({
   telemetry: false,
   runtimeConfig: {
     public: {
+      backendUrl: process.env.BACKEND_URL,
       apiUrl: process.env.API_URL,
     }
   },

@@ -25,16 +25,27 @@
         <p class="mt-4 md:mt-8 text-center text-xl font-bold text-base-100">Great, all done!</p>
       </div>
     </div>
-    <div class="flex justify-center p-4 md:py-12">
-      <div>
+    <div class="flex justify-center p-4 md:py-12 bg-base-200">
+      <div class="text-center">
         <button
           v-if="!employeeAssessment.completed_dt"
           class="btn btn-primary"
           @click="submitAssessment()"
-        >Submit assessment</button>
-        <p v-else>
-          Assessment was submitted, but you can still edit it.
-        </p>
+        >Submit assessment<Icon name="ph:paper-plane-tilt-duotone" class="ml-2" /></button>
+        <div v-else class="flex flex-col items-center">
+          <div class="flex justify-center items-center w-12 h-12 mb-4 bg-green-200 rounded-full">
+            <Icon name="ph:check-bold" class="text-green-500" size="1.6rem" />
+          </div>
+          <p>
+            Assessment was submitted, but you can still edit it.
+          </p>
+          <p>
+            <a
+              class="link"
+              @click="withdrawAssessment()"
+            >Withdraw</a>
+          </p>
+        </div>
       </div>
     </div>
   </NuxtLayout>
@@ -42,17 +53,20 @@
 
 <script setup lang="ts">
 import { Ref } from 'vue'
+import { useUpdateEmployeeAssessment } from '~~/composables/assessment';
 
 const route = useRoute()
 
-let employeeAssessment = await useApi(`/assessments/employee-assessments/${route.params.id.toString()}`) as Ref<EmployeeAssessment>
+const employeeAssessment = await useApi(`/assessments/employee-assessments/${route.params.id.toString()}`) as Ref<EmployeeAssessment>
 
 async function submitAssessment() {
-  employeeAssessment = await useApi(`/assessments/employee-assessments/${employeeAssessment.value.id}/`, {
-    method: 'PATCH',
-    body: JSON.stringify({
-      completed_dt: new Date().toISOString(),
-    })
-  }) as Ref<EmployeeAssessment>
+  await useUpdateEmployeeAssessment(employeeAssessment, {
+    completed_dt: new Date().toISOString(),
+  })
+}
+async function withdrawAssessment() {
+  useUpdateEmployeeAssessment(employeeAssessment, {
+    completed_dt: null,
+  })
 }
 </script>

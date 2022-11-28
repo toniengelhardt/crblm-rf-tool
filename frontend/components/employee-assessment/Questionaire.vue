@@ -1,23 +1,26 @@
 <template>
-  <div class="grid gap-8">
+  <div v-if="employeeAssessment" class="grid gap-8">
     <div
-      v-for="(question, idx) in employeeAssessment.assessment.questions"
-      :key="question.id"
+      v-for="(answer, idx) in employeeAssessment.answers"
+      :key="answer.id"
     >
-      <div class="ml-4 text-3xl font-black text-base-100">
+      <div class="ml-6 text-3xl font-black text-primary">
         {{ idx + 1 }}.
       </div>
       <div
-        class="mt-2 p-4 text-lg bg-base-100 rounded-lg shadow"
+        class="mt-2 px-4 py-3 text-lg bg-base-100 rounded-lg shadow"
       >
         <div>
-          {{ question.text }}
+          {{ answer.question.text }}
         </div>
-        <div>
+        <div class="mt-3">
           <textarea
-            class="textarea textarea-bordered w-full mt-4 px-3 text-lg rounded-md"
+            :value="answer.text || ''"
+            class="textarea textarea-bordered w-full px-3 text-lg bg-base-300 border-0 rounded-md"
             placeholder="Your answer..."
-            @change="saveAnswer($event)"
+            @keydown.enter.prevent
+            @keyup.enter="$event.target?.blur()"
+            @change="updateAnswer(ref(answer), $event)"
           />
         </div>
       </div>
@@ -32,13 +35,8 @@ defineProps<{
   employeeAssessment: EmployeeAssessment,
 }>()
 
-async function saveAnswer(event: any) {
-  answer = await useApi(`/assessments/answers/${employeeAssessment.value.id}/`, {
-    method: 'PATCH',
-    body: JSON.stringify({
-      text: event.target.value,
-    })
-  }) as Ref<Answer>
+async function updateAnswer(answer: Ref<Answer>, event: any) {
+  await useUpdateAnswer(answer, { text: event.target.value })
 }
 </script>
 

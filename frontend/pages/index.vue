@@ -9,10 +9,14 @@
           </h1>
           <p class="italic">
             You can define roles, questions, assessments, etc. in the
-            <NuxtLink to="/admin" class="link font-bold">backend</NuxtLink>.
+            <NuxtLink
+              :to="`${config.backendUrl}/admin`"
+              target="_blank"
+              class="link font-bold"
+            >backend</NuxtLink>.
           </p>
           <p class="mt-2 italic">
-            Click on an assessment to start it <Icon name="ph:arrow-down-bold" class="text-primary" />
+            Click on an assessment to open it <Icon name="ph:arrow-down-bold" class="text-primary" />
           </p>
         </div>
       </div>
@@ -39,12 +43,7 @@
 <script setup lang="ts">
 import { Ref } from 'vue'
 
-const roles = await useApi('/assessents/roles') as Ref<Role[]>
-const employeeAssessments = await useApi('/assessments/employee-assessments') as Ref<EmployeeAssessment[]>
+const config = useRuntimeConfig()
 
-// const items = $computed(() => {
-//   const dict: { [roleId: number]: { role: Role, assessments: Assessment[] } } = {}
-//   roles.value.forEach(role => dict[role.id] = { role, assessments: [] })
-//   assessments.value.forEach(assessment => dict[assessment.role])
-// })
+const employeeAssessments = await useApi('/assessments/employee-assessments') as Ref<EmployeeAssessment[]>
 </script>
