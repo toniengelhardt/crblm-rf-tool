@@ -12,6 +12,7 @@
             <NuxtLink
               :to="`${config.backendUrl}/admin`"
               target="_blank"
+              title="Backend"
               class="link font-bold"
             >backend</NuxtLink>.
           </p>
@@ -23,20 +24,9 @@
     </div>
     <div class="flex justify-center p-4 md:py-12 bg-base-content">
       <div class="w-full max-w-screen-md">
-        <!-- <h2 class="text-3xl text-center text-base-100 font-black mb-4 md:mb-6">Assessments</h2> -->
         <EmployeeAssessmentList :items="employeeAssessments" />
       </div>
     </div>
-    <footer class="p-4 bg-base-200">
-      <div class="w-full text-center text-sm">
-        <p>
-          &copy; 2022 Toni Engelhardt
-        </p>
-        <p class="mt-1">
-          Made with <b>Django</b>, <b>Nuxt</b>, <b>Vite</b>, <b>Tailwind</b>, and <b>Daisy UI</b>.
-        </p>
-      </div>
-    </footer>
   </NuxtLayout>
 </template>
 
@@ -44,6 +34,5 @@
 import { Ref } from 'vue'
 
 const config = useRuntimeConfig()
-
 const employeeAssessments = await useApi('/assessments/employee-assessments') as Ref<EmployeeAssessment[]>
 </script>

@@ -27,13 +27,11 @@ export default defineNuxtConfig({
       reactivityTransform: true,
     },
   },
-  // tailwindcss: {
-  //   cssPath: '~/assets/css/tailwind.css',
-  // },
   colorMode: {
+    classPrefix: 'data-',
     classSuffix: '',
     dataValue: 'theme',
-    preference: 'system',
+    preference: 'cupcake',
   },
   typescript: {
     shim: false,

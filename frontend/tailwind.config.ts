@@ -15,9 +15,9 @@ export default <Partial<Config>>{
     tailwindTypography,
     require('daisyui'),
   ],
-  daisyui: {
-    themes: [
-      'cupcake',
-    ],
-  }
+  // daisyui: {
+  //   themes: [
+  //     'cupcake',
+  //   ],
+  // }
 }
